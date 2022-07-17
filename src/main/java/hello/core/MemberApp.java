@@ -10,8 +10,13 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class MemberApp {
     public static void main(String[] args) {
-        AppConfig appConfig = new AppConfig();
-        MemberService memberService = appConfig.memberService();
+//        AppConfig appConfig = new AppConfig();
+//        MemberService memberService = appConfig.memberService();
+
+        // AppConfig에 등록한 Bean을 사용하기 위한 선언
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        //getBean("Bean 메서드 이름", class)
+        MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
 
         Member member = new Member(1L, "memberA", Grade.VIP);
         memberService.join(member);
