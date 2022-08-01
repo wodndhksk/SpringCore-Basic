@@ -27,7 +27,9 @@ public class ComponentFilterAppConfigTest {
 
     @Configuration
     @ComponentScan(
+            //@MyIncludeComponent 포함
             includeFilters = @Filter(type = FilterType.ANNOTATION, classes = MyIncludeComponent.class)
+            //@MyExcludeComponent 제외 -> 즉, BeanA는 bean 으로 등록이 안됨
             ,excludeFilters = @Filter(type = FilterType.ANNOTATION, classes = MyExcludeComponent.class)
     )
     static class ComponentFilterAppConfig {
